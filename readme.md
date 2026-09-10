@@ -10,7 +10,7 @@ Big Data Analytics Lab project using \*\*Hadoop MapReduce\*\* and \*\*Apache Pig
 
 
 
-This project analyzes student lifestyle, academic performance, stress, sleep, study habits, and depression status using distributed data processing technologies.
+This project analyzes student lifestyle, academic performance, stress, sleep, study habits, and depression status using distributed data processing technologies. 
 
 
 
@@ -18,19 +18,17 @@ This project analyzes student lifestyle, academic performance, stress, sleep, st
 
 
 
-\* Hadoop 3.4.2
+\* \*\*Hadoop:\*\* 3.4.2
 
-\* Apache Pig 0.18.0
+\* \*\*Apache Pig:\*\* 0.18.0
 
-\* Java 17
+\* \*\*Java:\*\* 17 (System) / 1.8 (Hadoop Runtime)
 
-\* Hadoop MapReduce
+\* \*\*Frameworks:\*\* Hadoop MapReduce, HDFS
 
-\* HDFS
+\* \*\*OS:\*\* Windows 10
 
-\* Windows 10
-
-\* Python/Pandas for independent dataset verification
+\* \*\*Data Verification:\*\* Python/Pandas
 
 
 
@@ -38,9 +36,7 @@ This project analyzes student lifestyle, academic performance, stress, sleep, st
 
 
 
-\*\*Dataset:\*\* Student Depression \& Lifestyle (100k Data)
-
-
+\*\*Dataset:\*\* Student Depression \& Lifestyle (100k Data)  
 
 \*\*Source:\*\* Kaggle
 
@@ -50,55 +46,45 @@ Dataset contains \*\*100,000 student records\*\* and \*\*11 attributes\*\*:
 
 
 
-| Column             | Description                   |
+| Column | Description |
 
-| ------------------ | ----------------------------- |
+| :--- | :--- |
 
-| Student\_ID         | Unique student identifier     |
+| \*\*Student\_ID\*\* | Unique student identifier |
 
-| Age                | Student age                   |
+| \*\*Age\*\* | Student age |
 
-| Gender             | Male/Female                   |
+| \*\*Gender\*\* | Male/Female |
 
-| Department         | Student's academic department |
+| \*\*Department\*\* | Student's academic department |
 
-| CGPA               | Cumulative GPA                |
+| \*\*CGPA\*\* | Cumulative GPA |
 
-| Sleep\_Duration     | Average sleep duration        |
+| \*\*Sleep\_Duration\*\* | Average sleep duration |
 
-| Study\_Hours        | Daily study hours             |
+| \*\*Study\_Hours\*\* | Daily study hours |
 
-| Social\_Media\_Hours | Daily social media usage      |
+| \*\*Social\_Media\_Hours\*\* | Daily social media usage |
 
-| Physical\_Activity  | Physical activity measure     |
+| \*\*Physical\_Activity\*\* | Physical activity measure |
 
-| Stress\_Level       | Student stress level          |
+| \*\*Stress\_Level\*\* | Student stress level |
 
-| Depression         | Depression status             |
-
-
-
-Dataset validation confirmed:
+| \*\*Depression\*\* | Depression status |
 
 
 
-\* 100,000 records
+\*\*Dataset validation confirmed:\*\*
 
-\* 11 columns
+\* 100,000 records across 11 columns
 
-\* No missing values
-
-\* No duplicate records
+\* No missing or duplicate values
 
 \* No duplicate Student IDs
 
-\* Valid department and gender categories
+\* Valid department/gender categories and numerical ranges
 
-\* Valid numerical ranges
-
-
-
-The original dataset was not modified.
+\* \*Note: The original dataset was not modified.\*
 
 
 
@@ -186,25 +172,9 @@ Project/
 
 
 
-\### Hadoop
+\### Hadoop Configuration
 
-
-
-Hadoop is installed at:
-
-
-
-```text
-
-C:\\hadoop
-
-```
-
-
-
-Check Hadoop:
-
-
+Hadoop is installed at `C:\\hadoop`.
 
 ```cmd
 
@@ -214,49 +184,9 @@ hadoop version
 
 
 
-Check Java:
+\### Apache Pig Configuration
 
-
-
-```cmd
-
-java --version
-
-```
-
-
-
-Expected Java version:
-
-
-
-```text
-
-OpenJDK 17.0.15
-
-```
-
-
-
-\### Apache Pig
-
-
-
-Pig is installed at:
-
-
-
-```text
-
-C:\\pig
-
-```
-
-
-
-Check Pig:
-
-
+Pig is installed at `C:\\pig`.
 
 ```cmd
 
@@ -266,45 +196,13 @@ pig --version
 
 
 
-Expected:
+\### Java Configuration
+
+The system Java environment uses Java 17 (`OpenJDK 17.0.15`), but Hadoop's runtime strictly requires Java 8 (`C:\\JAVA\\jdk-1.8`). 
 
 
 
-```text
-
-Apache Pig version 0.18.0
-
-```
-
-
-
-\## Important Java Configuration
-
-
-
-The system Java environment uses Java 17.
-
-
-
-Hadoop's runtime uses:
-
-
-
-```text
-
-C:\\JAVA\\jdk-1.8
-
-```
-
-
-
-Do not change the global `JAVA\_HOME` just for Hadoop.
-
-
-
-For Hadoop/Pig operations where the Hadoop Java 8 runtime is required:
-
-
+\*\*Do not change the global `JAVA\_HOME` just for Hadoop.\*\* Instead, set variables locally for Hadoop/Pig operations:
 
 ```cmd
 
@@ -316,147 +214,11 @@ set JAVA=C:\\JAVA\\jdk-1.8\\bin\\java.exe
 
 
 
-\## Starting Hadoop
-
-
-
-Open a CMD window and run:
-
-
-
-```cmd
-
-start-dfs.cmd
-
-start-yarn.cmd
-
-```
-
-
-
-Check the running services:
-
-
-
-```cmd
-
-jps
-
-```
-
-
-
-Expected services:
-
-
-
-```text
-
-NameNode
-
-DataNode
-
-ResourceManager
-
-NodeManager
-
-```
-
-
-
-\## Starting the MapReduce History Server
-
-
-
-The History Server is required for Apache Pig jobs.
-
-
-
-Open a \*\*separate CMD window\*\* and run:
-
-
-
-```cmd
-
-set HADOOP\_HOME=C:\\hadoop
-
-set JAVA\_HOME=C:\\JAVA\\jdk-1.8
-
-set CLASSPATH=C:\\hadoop\\share\\hadoop\\mapreduce\\\*;C:\\hadoop\\share\\hadoop\\mapreduce\\lib\\\*;C:\\hadoop\\share\\hadoop\\common\\\*;C:\\hadoop\\share\\hadoop\\common\\lib\\\*;C:\\hadoop\\share\\hadoop\\yarn\\\*;C:\\hadoop\\share\\hadoop\\yarn\\lib\\\*
-
-C:\\JAVA\\jdk-1.8\\bin\\java.exe org.apache.hadoop.mapreduce.v2.hs.JobHistoryServer
-
-```
-
-
-
-Keep this CMD window open while running Pig jobs.
-
-
-
-The History Server uses:
-
-
-
-```text
-
-Port 10020
-
-Port 10033
-
-```
-
-
-
-\## Stopping Hadoop
-
-
-
-Stop YARN:
-
-
-
-```cmd
-
-stop-yarn.cmd
-
-```
-
-
-
-Stop HDFS:
-
-
-
-```cmd
-
-stop-dfs.cmd
-
-```
-
-
-
-Stop the History Server by pressing:
-
-
-
-```text
-
-Ctrl + C
-
-```
-
-
-
-in its CMD window.
-
-
-
 \## HDFS Dataset Setup
 
 
 
-Create the HDFS directory:
+Create the HDFS directory and upload the dataset:
 
 
 
@@ -464,25 +226,13 @@ Create the HDFS directory:
 
 hdfs dfs -mkdir -p /student\_depression
 
-```
-
-
-
-Upload the dataset:
-
-
-
-```cmd
-
 hdfs dfs -put -f "D:\\website\\Varsity Notes\\8th Semester\\BDAL\\Project\\student\_lifestyle\_100k.csv" /student\_depression/
 
 ```
 
 
 
-Verify:
-
-
+Verify the upload:
 
 ```cmd
 
@@ -490,17 +240,11 @@ hdfs dfs -ls /student\_depression
 
 ```
 
-
-
-The dataset should appear as:
+\*Expected Output:\* `/student\_depression/student\_lifestyle\_100k.csv`
 
 
 
-```text
-
-/student\_depression/student\_lifestyle\_100k.csv
-
-```
+\---
 
 
 
@@ -508,19 +252,9 @@ The dataset should appear as:
 
 
 
-Three MapReduce jobs were implemented.
-
-
-
 \### MR1: Average CGPA by Department
 
-
-
 \*\*Objective:\*\* Calculate the average CGPA for each academic department.
-
-
-
-Run:
 
 
 
@@ -528,25 +262,11 @@ Run:
 
 hadoop jar "mapreduce\\average-cgpa.jar" AverageCGPADriver /student\_depression/student\_lifestyle\_100k.csv /student\_depression/mr1\_output
 
-```
-
-
-
-View output:
-
-
-
-```cmd
-
 hdfs dfs -cat /student\_depression/mr1\_output/part-r-00000
 
 ```
 
-
-
-Result:
-
-
+\*Sample Result:\*
 
 ```text
 
@@ -556,23 +276,13 @@ Business        2.89767403314917
 
 Engineering     2.8971351647803876
 
-Medical         2.896051893408144
-
-Science         2.897992127945791
-
 ```
 
 
 
 \### MR2: Average Stress Level by Gender
 
-
-
 \*\*Objective:\*\* Calculate the average stress level for male and female students.
-
-
-
-Run:
 
 
 
@@ -580,31 +290,7 @@ Run:
 
 hadoop jar "mapreduce\\average-stress.jar" AverageStressDriver /student\_depression/student\_lifestyle\_100k.csv /student\_depression/mr2\_output
 
-```
-
-
-
-View output:
-
-
-
-```cmd
-
 hdfs dfs -cat /student\_depression/mr2\_output/part-r-00000
-
-```
-
-
-
-Result:
-
-
-
-```text
-
-Female  4.130012028869286
-
-Male    4.13330007980846
 
 ```
 
@@ -612,13 +298,7 @@ Male    4.13330007980846
 
 \### MR3: Number of Students by Depression Status
 
-
-
 \*\*Objective:\*\* Count students according to their depression status.
-
-
-
-Run:
 
 
 
@@ -626,45 +306,13 @@ Run:
 
 hadoop jar "mapreduce\\depression-count.jar" DepressionCountDriver /student\_depression/student\_lifestyle\_100k.csv /student\_depression/mr3\_output
 
-```
-
-
-
-View output:
-
-
-
-```cmd
-
 hdfs dfs -cat /student\_depression/mr3\_output/part-r-00000
 
 ```
 
 
 
-Result:
-
-
-
-```text
-
-False   89938
-
-True    10062
-
-```
-
-
-
-Total:
-
-
-
-```text
-
-100000 students
-
-```
+\---
 
 
 
@@ -672,45 +320,11 @@ Total:
 
 
 
-The Pig scripts use the CSV dataset stored in HDFS.
-
-
-
-All Pig outputs use:
-
-
-
-```text
-
-|
-
-```
-
-
-
-as the output delimiter.
+\*Note: All Pig outputs use `|` as the output delimiter.\*
 
 
 
 \### Pig 1: Top 10 Students by CGPA
-
-
-
-\*\*Script:\*\*
-
-
-
-```text
-
-pig/1\_top\_10\_students\_by\_cgpa.pig
-
-```
-
-
-
-Run:
-
-
 
 ```cmd
 
@@ -718,49 +332,11 @@ hdfs dfs -rm -r /student\_depression/pig1\_output
 
 pig "D:\\website\\Varsity Notes\\8th Semester\\BDAL\\Project\\pig\\1\_top\_10\_students\_by\_cgpa.pig"
 
-```
-
-
-
-View:
-
-
-
-```cmd
-
 hdfs dfs -cat /student\_depression/pig1\_output/part-r-00000
 
 ```
 
-
-
-The result contains the 10 students with the highest CGPA.
-
-
-
-Example:
-
-
-
-```text
-
-7549|20|Male|Business|4.0|8.6|7.6|2.4|29|6|False
-
-52867|19|Female|Arts|4.0|8.2|7.1|4.9|90|2|False
-
-...
-
-```
-
-
-
-All top 10 students have a CGPA of `4.0`.
-
-
-
-Download the result:
-
-
+Download result:
 
 ```cmd
 
@@ -772,24 +348,6 @@ hdfs dfs -get /student\_depression/pig1\_output "D:\\website\\Varsity Notes\\8th
 
 \### Pig 2: Average Study Hours by Department
 
-
-
-\*\*Script:\*\*
-
-
-
-```text
-
-pig/2\_average\_study\_hours\_by\_department.pig
-
-```
-
-
-
-Run:
-
-
-
 ```cmd
 
 hdfs dfs -rm -r /student\_depression/pig2\_output
@@ -800,49 +358,7 @@ pig "D:\\website\\Varsity Notes\\8th Semester\\BDAL\\Project\\pig\\2\_average\_s
 
 
 
-View:
-
-
-
-```cmd
-
-hdfs dfs -cat /student\_depression/pig2\_output/part-r-00000
-
-```
-
-
-
-Download:
-
-
-
-```cmd
-
-hdfs dfs -get /student\_depression/pig2\_output "D:\\website\\Varsity Notes\\8th Semester\\BDAL\\Project\\pig\\AverageStudyHoursByDepartment.txt"
-
-```
-
-
-
 \### Pig 3: Average Sleep Duration by Depression Status
-
-
-
-\*\*Script:\*\*
-
-
-
-```text
-
-pig/3\_average\_sleep\_by\_depression.pig
-
-```
-
-
-
-Run:
-
-
 
 ```cmd
 
@@ -854,49 +370,7 @@ pig "D:\\website\\Varsity Notes\\8th Semester\\BDAL\\Project\\pig\\3\_average\_s
 
 
 
-View:
-
-
-
-```cmd
-
-hdfs dfs -cat /student\_depression/pig3\_output/part-r-00000
-
-```
-
-
-
-Download:
-
-
-
-```cmd
-
-hdfs dfs -get /student\_depression/pig3\_output "D:\\website\\Varsity Notes\\8th Semester\\BDAL\\Project\\pig\\AverageSleepByDepression.txt"
-
-```
-
-
-
 \### Pig 5: Top 10 Students by Study Hours
-
-
-
-\*\*Script:\*\*
-
-
-
-```text
-
-pig/5\_top\_10\_students\_by\_study\_hours.pig
-
-```
-
-
-
-Run:
-
-
 
 ```cmd
 
@@ -908,105 +382,9 @@ pig "D:\\website\\Varsity Notes\\8th Semester\\BDAL\\Project\\pig\\5\_top\_10\_s
 
 
 
-View:
+\### Important: Re-running Pig Jobs
 
-
-
-```cmd
-
-hdfs dfs -cat /student\_depression/pig5\_output/part-r-00000
-
-```
-
-
-
-Download:
-
-
-
-```cmd
-
-hdfs dfs -get /student\_depression/pig5\_output "D:\\website\\Varsity Notes\\8th Semester\\BDAL\\Project\\pig\\Top10StudentsByStudyHours.txt"
-
-```
-
-
-
-\## Downloaded Pig Output Structure
-
-
-
-After downloading the results, the `pig` directory contains Hadoop output directories with `.txt` names:
-
-
-
-```text
-
-pig/
-
-│
-
-├── Top10StudentsByCGPA.txt/
-
-│   ├── part-r-00000
-
-│   └── \_SUCCESS
-
-│
-
-├── AverageStudyHoursByDepartment.txt/
-
-│   ├── part-r-00000
-
-│   └── \_SUCCESS
-
-│
-
-├── AverageSleepByDepression.txt/
-
-│   ├── part-r-00000
-
-│   └── \_SUCCESS
-
-│
-
-└── Top10StudentsByStudyHours.txt/
-
-&#x20;   ├── part-r-00000
-
-&#x20;   └── \_SUCCESS
-
-```
-
-
-
-To view a downloaded result:
-
-
-
-```cmd
-
-type "D:\\website\\Varsity Notes\\8th Semester\\BDAL\\Project\\pig\\Top10StudentsByCGPA.txt\\part-r-00000"
-
-```
-
-
-
-Replace the directory name for the other outputs.
-
-
-
-\## Re-running a Pig Job
-
-
-
-Hadoop does not allow a job to write into an existing output directory.
-
-
-
-Therefore, remove the old HDFS output first:
-
-
+Hadoop does not allow a job to write into an existing output directory. You must remove the old HDFS output first:
 
 ```cmd
 
@@ -1016,23 +394,7 @@ hdfs dfs -rm -r /student\_depression/pig1\_output
 
 
 
-Then run the Pig script again.
-
-
-
-The same pattern applies to:
-
-
-
-```text
-
-/student\_depression/pig2\_output
-
-/student\_depression/pig3\_output
-
-/student\_depression/pig5\_output
-
-```
+\---
 
 
 
@@ -1040,35 +402,11 @@ The same pattern applies to:
 
 
 
-During the initial Pig execution, the following error occurred:
+During the initial Pig execution, a `ClassNotFoundException: org.apache.commons.collections.buffer.CircularFifoBuffer` error may occur. 
 
 
 
-```text
-
-ClassNotFoundException:
-
-org.apache.commons.collections.buffer.CircularFifoBuffer
-
-```
-
-
-
-The required dependency was found in:
-
-
-
-```text
-
-C:\\pig\\lib\\hadoop3-runtime\\commons-collections-3.2.2.jar
-
-```
-
-
-
-It was copied into Hadoop's common library:
-
-
+\*\*Fix:\*\* Copy the required dependency from Pig to Hadoop's common library:
 
 ```cmd
 
@@ -1076,183 +414,87 @@ copy "C:\\pig\\lib\\hadoop3-runtime\\commons-collections-3.2.2.jar" "C:\\hadoop\
 
 ```
 
+\*Note: Ensure both `commons-collections-3.2.2.jar` and `commons-collections4-4.4.jar` are retained in the directory.\*
 
 
-The Hadoop common library now contains both:
 
+\---
 
 
-```text
 
-commons-collections-3.2.2.jar
+\## Complete Workflow
 
-commons-collections4-4.4.jar
 
-```
 
+\### Startup Workflow
 
+1\. \*\*Start HDFS \& YARN:\*\*
 
-Both should be retained.
+&#x20;  ```cmd
 
+&#x20;  start-dfs.cmd
 
+&#x20;  start-yarn.cmd
 
-\## Complete Startup Workflow
+&#x20;  ```
 
+2\. \*\*Verify Services\*\* (`NameNode`, `DataNode`, `ResourceManager`, `NodeManager`):
 
+&#x20;  ```cmd
 
-For a new lab session:
+&#x20;  jps
 
+&#x20;  ```
 
+3\. \*\*Start the History Server\*\* (Required for Pig. Run in a separate CMD and keep open):
 
-\### 1. Start HDFS
+&#x20;  ```cmd
 
+&#x20;  set HADOOP\_HOME=C:\\hadoop
 
+&#x20;  set JAVA\_HOME=C:\\JAVA\\jdk-1.8
 
-```cmd
+&#x20;  set CLASSPATH=C:\\hadoop\\share\\hadoop\\mapreduce\\\*;C:\\hadoop\\share\\hadoop\\mapreduce\\lib\\\*;C:\\hadoop\\share\\hadoop\\common\\\*;C:\\hadoop\\share\\hadoop\\common\\lib\\\*;C:\\hadoop\\share\\hadoop\\yarn\\\*;C:\\hadoop\\share\\hadoop\\yarn\\lib\\\*
 
-start-dfs.cmd
+&#x20;  C:\\JAVA\\jdk-1.8\\bin\\java.exe org.apache.hadoop.mapreduce.v2.hs.JobHistoryServer
 
-```
+&#x20;  ```
 
 
 
-\### 2. Start YARN
+\### Shutdown Workflow
 
+1\. Stop the History Server by pressing `Ctrl + C` in its dedicated CMD window.
 
+2\. Stop YARN:
 
-```cmd
+&#x20;  ```cmd
 
-start-yarn.cmd
+&#x20;  stop-yarn.cmd
 
-```
+&#x20;  ```
 
+3\. Stop HDFS:
 
+&#x20;  ```cmd
 
-\### 3. Verify
+&#x20;  stop-dfs.cmd
 
+&#x20;  ```
 
 
-```cmd
 
-jps
+\## General Notes
 
-```
+\* Use `hadoop version`, not `hadoop --version`.
 
-
-
-\### 4. Start the History Server
-
-
-
-Open another CMD:
-
-
-
-```cmd
-
-set HADOOP\_HOME=C:\\hadoop
-
-set JAVA\_HOME=C:\\JAVA\\jdk-1.8
-
-set CLASSPATH=C:\\hadoop\\share\\hadoop\\mapreduce\\\*;C:\\hadoop\\share\\hadoop\\mapreduce\\lib\\\*;C:\\hadoop\\share\\hadoop\\common\\\*;C:\\hadoop\\share\\hadoop\\common\\lib\\\*;C:\\hadoop\\share\\hadoop\\yarn\\\*;C:\\hadoop\\share\\hadoop\\yarn\\lib\\\*
-
-C:\\JAVA\\jdk-1.8\\bin\\java.exe org.apache.hadoop.mapreduce.v2.hs.JobHistoryServer
-
-```
-
-
-
-\### 5. Verify Dataset
-
-
-
-```cmd
-
-hdfs dfs -ls /student\_depression
-
-```
-
-
-
-\### 6. Run MapReduce or Pig Jobs
-
-
-
-Use the commands described above.
-
-
-
-\## Complete Shutdown Workflow
-
-
-
-Stop the History Server:
-
-
-
-```text
-
-Ctrl + C
-
-```
-
-
-
-Then stop YARN:
-
-
-
-```cmd
-
-stop-yarn.cmd
-
-```
-
-
-
-Then stop HDFS:
-
-
-
-```cmd
-
-stop-dfs.cmd
-
-```
-
-
-
-\## Notes
-
-
-
-\* `hadoop --version` should not be used in this setup. Use:
-
-
-
-```cmd
-
-hadoop version
-
-```
-
-
-
-\* `pig --version` can be used to check the Pig installation.
-
-\* `java --version` shows the system Java version.
-
-\* The History Server CMD must remain open while Pig jobs are running.
+\* The History Server CMD must remain open while Pig jobs are running (uses Ports `10020` and `10033`).
 
 \* HDFS output paths are directories, even when downloaded using names ending in `.txt`.
 
-\* Pig output uses `|` as the delimiter.
+\* MapReduce results were independently verified against the dataset using Pandas.
 
-\* The original dataset remains unchanged.
-
-\* MapReduce results were independently verified against the dataset.
-
-\* Pig Job 4 (`Average CGPA by Depression Status`) is not included in the current workflow.
+\* Pig Job 4 (Average CGPA by Depression Status) is purposefully omitted from the current active workflow.
 
 
 
@@ -1260,37 +502,15 @@ hadoop version
 
 
 
-The project demonstrates the use of Hadoop MapReduce and Apache Pig for processing and analyzing a 100,000-record student lifestyle dataset.
+The project effectively demonstrates the use of Hadoop MapReduce and Apache Pig for processing and analyzing a 100,000-record student lifestyle dataset. 
 
 
 
-The MapReduce implementation focuses on:
+\* \*\*MapReduce\*\* was successfully utilized to aggregate average CGPA by department, assess stress levels by gender, and count students by depression status. 
+
+\* \*\*Apache Pig\*\* handled complex queries including sorting top students by CGPA/study hours, and calculating multi-variable averages like study hours by department and sleep duration by depression status. 
 
 
 
-1\. Average CGPA by department
-
-2\. Average stress level by gender
-
-3\. Student count by depression status
-
-
-
-The Pig implementation focuses on:
-
-
-
-1\. Top 10 students by CGPA
-
-2\. Average study hours by department
-
-3\. Average sleep duration by depression status
-
-4\. Top 10 students by study hours
-
-
-
-These operations demonstrate filtering, type conversion, grouping, aggregation, sorting, limiting, and distributed processing using Hadoop and Pig.
-
-
+These operations validate proficiency in filtering, type conversion, grouping, aggregation, sorting, limiting, and overall distributed processing within the Hadoop ecosystem.
 
